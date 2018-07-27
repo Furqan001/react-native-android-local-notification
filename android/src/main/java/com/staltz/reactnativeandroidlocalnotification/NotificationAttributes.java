@@ -43,7 +43,7 @@ public class NotificationAttributes {
     public String tickerText;
     public Long when;
     public String bigText;
-    public String bigStyleUrlImgage;
+    public String bigStyleUrlImage;
     public String bigStyleImageBase64;
     public String subText;
     public Integer progress;
@@ -130,8 +130,8 @@ public class NotificationAttributes {
             when = Long.parseLong(readableMap.getString("when"));
         if (readableMap.hasKey("bigText"))
             bigText = readableMap.getString("bigText");
-        if (readableMap.hasKey("bigStyleUrlImgage"))
-            bigStyleUrlImgage = readableMap.getString("bigStyleUrlImgage");
+        if (readableMap.hasKey("bigStyleUrlImage"))
+            bigStyleUrlImage = readableMap.getString("bigStyleUrlImage");
         if (readableMap.hasKey("bigStyleImageBase64"))
             bigStyleImageBase64 = readableMap.getString("bigStyleImageBase64");
         if (readableMap.hasKey("subText"))
@@ -245,8 +245,8 @@ public class NotificationAttributes {
             writableMap.putString("bigText", bigText);
         if (bigStyleImageBase64 != null)
             writableMap.putString("bigStyleImageBase64", bigStyleImageBase64);
-        if (bigStyleUrlImgage != null)
-            writableMap.putString("bigStyleImageBase64", bigStyleUrlImgage);
+        if (bigStyleUrlImage != null)
+            writableMap.putString("bigStyleImageBase64", bigStyleUrlImage);
         if (subText != null)
             writableMap.putString("subText", subText);
         if (progress != null)

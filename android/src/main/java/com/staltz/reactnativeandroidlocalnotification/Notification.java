@@ -188,14 +188,14 @@ public class Notification {
         if (attributes.bigText != null) {
             notificationBuilder
                     .setStyle(new android.support.v7.app.NotificationCompat.BigTextStyle().bigText(attributes.bigText));
-        } else if (attributes.bigStyleUrlImgage != null && !attributes.bigStyleUrlImgage.equals("")) {
+        } else if (attributes.bigStyleUrlImage != null && !attributes.bigStyleUrlImage.equals("")) {
 
             Bitmap bigPicture = null;
 
             try {
 
-                Log.i("ReactSystemNotification", "start to get image from URL : " + attributes.bigStyleUrlImgage);
-                URL url = new URL(attributes.bigStyleUrlImgage);
+                Log.i("ReactSystemNotification", "start to get image from URL : " + attributes.bigStyleUrlImage);
+                URL url = new URL(attributes.bigStyleUrlImage);
                 bigPicture = BitmapFactory.decodeStream(url.openStream());
                 Log.i("ReactSystemNotification", "finishing to get image from URL");
 
