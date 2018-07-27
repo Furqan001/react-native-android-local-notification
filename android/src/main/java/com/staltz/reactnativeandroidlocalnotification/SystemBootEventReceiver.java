@@ -1,11 +1,10 @@
-package com.exease.react.notification;
+package com.staltz.reactnativeandroidlocalnotification;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
 import java.util.ArrayList;
-
 
 import android.util.Log;
 
@@ -23,14 +22,15 @@ public class SystemBootEventReceiver extends BroadcastReceiver {
 
             ArrayList<Integer> ids = notificationManager.getIDs();
 
-            for (Integer id: ids) {
+            for (Integer id : ids) {
                 try {
                     Notification notification = notificationManager.find(id);
 
                     if (notification.getAttributes() != null) {
                         notification.cancelAlarm();
                         notification.setAlarmAndSaveOrShow();
-                        Log.i("ReactSystemNotification", "SystemBootEventReceiver: Alarm set for: " + notification.getAttributes().id);
+                        Log.i("ReactSystemNotification",
+                                "SystemBootEventReceiver: Alarm set for: " + notification.getAttributes().id);
                     }
                 } catch (Exception e) {
                     Log.e("ReactSystemNotification", "SystemBootEventReceiver: onReceive Error: " + e.getMessage());

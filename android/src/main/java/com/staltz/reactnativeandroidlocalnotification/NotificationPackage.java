@@ -1,4 +1,4 @@
-package com.exease.react.notification;
+package com.staltz.reactnativeandroidlocalnotification;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
@@ -17,8 +17,7 @@ public class NotificationPackage implements ReactPackage {
     }
 
     @Override
-    public List<NativeModule> createNativeModules(
-            ReactApplicationContext reactContext) {
+    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
 
         modules.add(new NotificationModule(reactContext));

@@ -1,15 +1,12 @@
-# Only for android local notification
-Diverge from [https://github.com/neson/react-native-system-notification](https://github.com/neson/react-native-system-notification), remove remote notification, reduce code and dependencies, keep simple and small.
+# Local Android Notifications
 
-# 安卓本地通知
-从[https://github.com/neson/react-native-system-notification](https://github.com/neson/react-native-system-notification)分离而来。
-鉴于国内环境，去掉远程推送通知功能，以及相关的代码和依赖，方便安装和使用。
+Forked from [https://github.com/anysome/react-native-pure-notification](https://github.com/anysome/react-native-pure-notification) to update its dependencies.
 
 ---
 
 ```js
 import React, { DeviceEventEmitter } from 'react-native';
-import Notification from 'react-native-pure-notification';
+import Notification from 'react-native-android-local-notification';
 
 // Send a simple notification
 Notification.create({ subject: 'Hey', message: 'Yo! Hello world.' });
@@ -50,13 +47,13 @@ Notification.create({
 
 ## Installation
 
-- Run `npm install react-native-pure-notification --save` to install using npm.
+- Run `npm install react-native-android-local-notification --save` to install using npm.
 
 - Add the following two lines to `android/settings.gradle`:
 
 ```gradle
-include ':react-native-pure-notification'
-project(':react-native-pure-notification').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-pure-notification/android')
+include ':react-native-android-local-notification'
+project(':react-native-android-local-notification').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-android-local-notification/android')
 ```
 
 - Edit `android/app/build.gradle` and add the annoated lines as below:
@@ -68,7 +65,7 @@ dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:0.16.+"
-    compile project(':react-native-pure-notification')  // <- Add this line
+    compile project(':react-native-android-local-notification')  // <- Add this line
 }
 ```
 
@@ -79,7 +76,6 @@ dependencies {
     package="com.reactnativeproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.GET_TASKS" />                       <!-- <- Add this line -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>           <!-- <- Add this line -->
     <uses-permission android:name="android.permission.VIBRATE"/>                          <!-- <- Add this line -->
 
@@ -92,9 +88,9 @@ dependencies {
 ...
 
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-      <receiver android:name="com.exease.react.notification.NotificationEventReceiver" />   <!-- <- Add this line -->
-      <receiver android:name="com.exease.react.notification.NotificationPublisher" />       <!-- <- Add this line -->
-      <receiver android:name="com.exease.react.notification.SystemBootEventReceiver">       <!-- <- Add this line -->
+      <receiver android:name="com.staltz.reactnativeandroidlocalnotification.NotificationEventReceiver" />   <!-- <- Add this line -->
+      <receiver android:name="com.staltz.reactnativeandroidlocalnotification.NotificationPublisher" />       <!-- <- Add this line -->
+      <receiver android:name="com.staltz.reactnativeandroidlocalnotification.SystemBootEventReceiver">       <!-- <- Add this line -->
         <intent-filter>                                                                   <!-- <- Add this line -->
           <action android:name="android.intent.action.BOOT_COMPLETED"></action>           <!-- <- Add this line -->
         </intent-filter>                                                                  <!-- <- Add this line -->
@@ -119,7 +115,7 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
-import com.exease.react.notification.NotificationPackage;    // <- Add this line
+import com.staltz.reactnativeandroidlocalnotification.NotificationPackage;    // <- Add this line
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -268,7 +264,7 @@ Set the text to be shown when the user expand the notification.
 **bigStyleImageBase64 (`string`)**
 Set the image in base64 to be shown when the user expand the notification. if bigText is not null, it have priority over bigStyleImageBase64.
 
-**bigStyleUrlImgage (`string`)**  
+**bigStyleUrlImgage (`string`)**
 Set URL of a image. Geting it by open a stream connection and it be shown when the user expand the notification.. if bigText is not null, it have priority over bigStyleUrlImgage
 
 **subText (`string`)**

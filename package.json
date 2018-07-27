@@ -1,7 +1,7 @@
 {
-  "name": "react-native-pure-notification",
-  "version": "0.2.2",
-  "description": "Local notification for react-native android",
+  "name": "react-native-android-local-notification",
+  "version": "1.0.0",
+  "description": "Local-only notifications for React Native Android projects",
   "main": "index.js",
   "files": [
     "android/src",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anysome/react-native-pure-notification.git"
+    "url": "git+https://github.com/staltz/react-native-android-local-notification.git"
   },
   "nativePackage": true,
   "keywords": [
@@ -20,9 +20,12 @@
     "simple"
   ],
   "author": "Layman <anysome@gmail.com>",
+  "contributors": [
+    "Andre Staltz <contact@staltz.com>"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anysome/react-native-pure-notification/issues"
+    "url": "https://github.com/staltz/react-native-android-local-notification/issues"
   },
-  "homepage": "https://github.com/anysome/react-native-pure-notification#readme"
+  "homepage": "https://github.com/staltz/react-native-android-local-notification#readme"
 }

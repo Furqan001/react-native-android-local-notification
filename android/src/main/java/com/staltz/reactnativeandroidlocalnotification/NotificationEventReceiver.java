@@ -1,4 +1,4 @@
-package com.exease.react.notification;
+package com.staltz.reactnativeandroidlocalnotification;
 
 import android.content.ComponentName;
 import android.os.Build;
@@ -26,9 +26,11 @@ public class NotificationEventReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Bundle extras = intent.getExtras();
 
-        Log.i("ReactSystemNotification", "NotificationEventReceiver: Recived: " + extras.getString(ACTION) + ", Notification ID: " + extras.getInt(NOTIFICATION_ID) + ", payload: " + extras.getString(PAYLOAD));
+        Log.i("ReactSystemNotification", "NotificationEventReceiver: Recived: " + extras.getString(ACTION)
+                + ", Notification ID: " + extras.getInt(NOTIFICATION_ID) + ", payload: " + extras.getString(PAYLOAD));
 
-        // If the application is not running or is not in foreground, start it with the notification
+        // If the application is not running or is not in foreground, start it with the
+        // notification
         // passed in
         if (!applicationIsRunning(context)) {
             String packageName = context.getApplicationContext().getPackageName();
@@ -47,14 +49,17 @@ public class NotificationEventReceiver extends BroadcastReceiver {
     }
 
     private void sendBroadcast(Context context, Bundle extras) {
-      Intent brodcastIntent = new Intent("NotificationEvent");
+        Intent brodcastIntent = new Intent("NotificationEvent");
 
-      brodcastIntent.putExtra("id", extras.getInt(NOTIFICATION_ID));
-      brodcastIntent.putExtra("action", extras.getString(ACTION));
-      brodcastIntent.putExtra("payload", extras.getString(PAYLOAD));
+        brodcastIntent.putExtra("id", extras.getInt(NOTIFICATION_ID));
+        brodcastIntent.putExtra("action", extras.getString(ACTION));
+        brodcastIntent.putExtra("payload", extras.getString(PAYLOAD));
 
-      context.sendBroadcast(brodcastIntent);
-      Log.v("ReactSystemNotification", "NotificationEventReceiver: Broadcast Sent: NotificationEvent: " + extras.getString(ACTION) + ", Notification ID: " + extras.getInt(NOTIFICATION_ID) + ", payload: " + extras.getString(PAYLOAD));
+        context.sendBroadcast(brodcastIntent);
+        Log.v("ReactSystemNotification",
+                "NotificationEventReceiver: Broadcast Sent: NotificationEvent: " + extras.getString(ACTION)
+                        + ", Notification ID: " + extras.getInt(NOTIFICATION_ID) + ", payload: "
+                        + extras.getString(PAYLOAD));
     }
 
     private boolean applicationIsRunning(Context context) {
@@ -65,7 +70,7 @@ public class NotificationEventReceiver extends BroadcastReceiver {
             for (RunningAppProcessInfo processInfo : processInfos) {
                 if (processInfo.processName.equals(context.getApplicationContext().getPackageName())) {
                     if (processInfo.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                        for (String d: processInfo.pkgList) {
+                        for (String d : processInfo.pkgList) {
                             Log.v("ReactSystemNotification", "NotificationEventReceiver: ok: " + d);
                             return true;
                         }

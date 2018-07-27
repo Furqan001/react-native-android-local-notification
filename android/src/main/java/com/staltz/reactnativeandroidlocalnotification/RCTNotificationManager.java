@@ -1,4 +1,4 @@
-package com.exease.react.notification;
+package com.staltz.reactnativeandroidlocalnotification;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -34,10 +34,7 @@ public class RCTNotificationManager {
     /**
      * Create a notification.
      */
-    public Notification create(
-        Integer notificationID,
-        NotificationAttributes notificationAttributes
-    ) {
+    public Notification create(Integer notificationID, NotificationAttributes notificationAttributes) {
         Notification notification = new Notification(context, notificationID, notificationAttributes);
 
         notification.create();
@@ -48,10 +45,7 @@ public class RCTNotificationManager {
     /**
      * Create or update (if exists) a notification.
      */
-    public Notification createOrUpdate(
-        Integer notificationID,
-        NotificationAttributes notificationAttributes
-    ) {
+    public Notification createOrUpdate(Integer notificationID, NotificationAttributes notificationAttributes) {
         if (getIDs().contains(notificationID)) {
             Notification notification = find(notificationID);
 
@@ -88,7 +82,8 @@ public class RCTNotificationManager {
     public Notification find(Integer notificationID) {
         Notification notification = new Notification(context, notificationID, null);
 
-        if (notification.getAttributes() == null) notification.loadAttributesFromPreferences();
+        if (notification.getAttributes() == null)
+            notification.loadAttributesFromPreferences();
 
         return notification;
     }
@@ -111,7 +106,8 @@ public class RCTNotificationManager {
      * Clear all notifications.
      */
     public void clearAll() {
-        NotificationManager systemNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager systemNotificationManager = (NotificationManager) context
+                .getSystemService(Context.NOTIFICATION_SERVICE);
         systemNotificationManager.cancelAll();
     }
 }
