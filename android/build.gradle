@@ -9,23 +9,24 @@ def computeVersionName() {
 
 buildscript {
     repositories {
+        google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.android.tools.build:gradle:3.1.4'
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 26
         versionCode 1
         versionName computeVersionName()
     }
@@ -36,10 +37,12 @@ android {
 
 repositories {
     mavenCentral()
+    google()
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.google.code.gson:gson:+'
-    compile 'com.facebook.react:react-native:+'
+    //noinspection GradleDynamicVersion
+    implementation "com.facebook.react:react-native:+"
+    implementation 'com.android.support:appcompat-v7:26.0.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
