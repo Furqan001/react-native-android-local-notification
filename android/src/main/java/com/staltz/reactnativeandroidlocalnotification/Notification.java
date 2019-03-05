@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import androidx.annotation.Nullable;
 import android.net.Uri;
+import android.app.NotificationChannel;
 
 import java.lang.System;
 import java.net.URL;
@@ -112,12 +113,23 @@ public class Notification {
      * Build the notification.
      */
     public android.app.Notification build() {
-        androidx.core.app.NotificationCompat.Builder notificationBuilder = new androidx.core.app.NotificationCompat.Builder(
-                context);
-
+        androidx.core.app.NotificationCompat.Builder notificationBuilder;
+        String iconName = attributes.smallIcon != null ? attributes.smallIcon : "ic_launcher";
+        int iconResource = context.getResources().getIdentifier(attributes.smallIcon, "mipmap", context.getPackageName());
+        String channelID = attributes.channelID != null ? attributes.channelID : "channel_0";
+        if (iconResource == 0) {
+            Log.w("Notification", "icon resource not found with name " + iconName);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelName = attributes.channelName != null ? attributes.channelName : "Default";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationManager notificationManager = getSysNotificationManager();
+            NotificationChannel channel = new NotificationChannel(channelID, channelName, importance);
+            notificationManager.createNotificationChannel(channel);
+        }
+        notificationBuilder = new androidx.core.app.NotificationCompat.Builder(context, channelID);
         notificationBuilder.setContentTitle(attributes.subject).setContentText(attributes.message)
-                .setSmallIcon(
-                        context.getResources().getIdentifier(attributes.smallIcon, "mipmap", context.getPackageName()))
+                .setSmallIcon(iconResource)
                 .setAutoCancel(attributes.autoClear).setContentIntent(getContentIntent());
 
         if (attributes.priority != null) {
