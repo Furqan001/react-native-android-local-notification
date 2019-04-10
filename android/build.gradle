@@ -19,13 +19,21 @@ buildscript {
 
 apply plugin: 'com.android.library'
 
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+def DEFAULT_COMPILE_SDK_VERSION = 23
+def DEFAULT_MIN_SDK_VERSION = 16
+def DEFAULT_SUPPORT_LIB_VERSION = '26.1.0'
+def DEFAULT_TARGET_SDK_VERSION = 23
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 23
+        minSdkVersion safeExtGet('minSdkVersion', DEFAULT_MIN_SDK_VERSION)
+        targetSdkVersion safeExtGet('targetSdkVersion', DEFAULT_TARGET_SDK_VERSION)
         versionCode 1
         versionName computeVersionName()
     }
@@ -38,8 +46,10 @@ repositories {
     mavenCentral()
 }
 
+def supportLibVersion = safeExtGet('supportLibVersion', DEFAULT_SUPPORT_LIB_VERSION)
+
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.google.code.gson:gson:+'
-    compile 'com.facebook.react:react-native:+'
+    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+    implementation 'com.google.code.gson:gson:+'
+    implementation 'com.facebook.react:react-native:+'
 }

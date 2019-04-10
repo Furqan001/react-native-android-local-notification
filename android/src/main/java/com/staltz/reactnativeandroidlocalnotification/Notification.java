@@ -19,7 +19,7 @@ import java.net.URL;
 import com.google.gson.Gson;
 
 import android.util.Base64;
-import android.support.v7.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 import android.util.Log;
 import android.graphics.Color;
@@ -112,7 +112,7 @@ public class Notification {
      * Build the notification.
      */
     public android.app.Notification build() {
-        android.support.v7.app.NotificationCompat.Builder notificationBuilder = new android.support.v7.app.NotificationCompat.Builder(
+        android.support.v4.app.NotificationCompat.Builder notificationBuilder = new android.support.v4.app.NotificationCompat.Builder(
                 context);
 
         notificationBuilder.setContentTitle(attributes.subject).setContentText(attributes.message)
@@ -138,7 +138,7 @@ public class Notification {
 
         if (attributes.inboxStyle) {
 
-            android.support.v7.app.NotificationCompat.InboxStyle inboxStyle = new android.support.v7.app.NotificationCompat.InboxStyle();
+            android.support.v4.app.NotificationCompat.InboxStyle inboxStyle = new android.support.v4.app.NotificationCompat.InboxStyle();
 
             if (attributes.inboxStyleBigContentTitle != null) {
                 inboxStyle.setBigContentTitle(attributes.inboxStyleBigContentTitle);
@@ -187,7 +187,7 @@ public class Notification {
         // if bigText is not null, it have priority over bigStyleImageBase64
         if (attributes.bigText != null) {
             notificationBuilder
-                    .setStyle(new android.support.v7.app.NotificationCompat.BigTextStyle().bigText(attributes.bigText));
+                    .setStyle(new android.support.v4.app.NotificationCompat.BigTextStyle().bigText(attributes.bigText));
         } else if (attributes.bigStyleUrlImage != null && !attributes.bigStyleUrlImage.equals("")) {
 
             Bitmap bigPicture = null;
