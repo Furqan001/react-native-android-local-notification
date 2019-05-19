@@ -137,9 +137,18 @@ public class Notification {
         }
 
         if (attributes.largeIcon != null) {
-            int largeIconId = context.getResources().getIdentifier(attributes.largeIcon, "drawable",
-                    context.getPackageName());
-            Bitmap largeIcon = BitmapFactory.decodeResource(context.getResources(), largeIconId);
+            Bitmap largeIcon = null;
+            try {
+                URL url = new URL(attributes.largeIcon);
+                largeIcon = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(largeIcon == null){
+                int largeIconId = context.getResources().getIdentifier(attributes.largeIcon, "drawable",
+                        context.getPackageName());
+                largeIcon = BitmapFactory.decodeResource(context.getResources(), largeIconId);
+            }
             notificationBuilder.setLargeIcon(largeIcon);
         }
 
