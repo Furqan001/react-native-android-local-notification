@@ -9,11 +9,12 @@ def computeVersionName() {
 
 buildscript {
     repositories {
+        google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.android.tools.build:gradle:3.4.0'
     }
 }
 
@@ -46,10 +47,8 @@ repositories {
     mavenCentral()
 }
 
-def supportLibVersion = safeExtGet('supportLibVersion', DEFAULT_SUPPORT_LIB_VERSION)
-
 dependencies {
-    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.google.code.gson:gson:+'
     implementation 'com.facebook.react:react-native:+'
 }
