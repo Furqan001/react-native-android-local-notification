@@ -47,6 +47,9 @@ Notification.create({
 
 ## Installation
 
+- For React Native 0.60 or higher, use this package's version 3.0.0 or higher
+- For React Native 0.59 or lower, use this package's version 2.0.0 or lower
+
 - Run `npm install react-native-android-local-notification --save` to install using npm.
 
 - Add the following two lines to `android/settings.gradle`:
